@@ -1,0 +1,11 @@
+{
+  "kernel": "aikyatansinha/portfolio-semrel-african-encoder-v1",
+  "kernel_version": 2,
+  "expected_source_dataset_version": 2,
+  "expected_source_revision": "3cc2934",
+  "expected_source_manifest_sha256": "34d3507096bceb4bbec6bb66632d3444ccce682d615ef6b3ba3d3a6e8550a12c",
+  "runner_sha256": "3d4f47c90fbd768c1ed2c887d7a452d989ab000754a72f533a1ca582afa438be",
+  "test_gold_parsed": false,
+  "compute": "Private CPU; two threads; no local encoder",
+  "status": "Submitted; actual source/runtime to be confirmed from output"
+}

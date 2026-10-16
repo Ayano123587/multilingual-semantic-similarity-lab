@@ -1,0 +1,54 @@
+{
+  "languages": {
+    "amh": {
+      "components": 1240,
+      "sentence_nodes": 2498,
+      "largest_component_sentence_nodes": 4,
+      "cross_split_components": 6,
+      "rows_in_cross_split_components": {
+        "train": 10,
+        "test": 5,
+        "dev": 1
+      },
+      "split_component_counts": {
+        "train": 980,
+        "dev": 95,
+        "test": 171
+      }
+    },
+    "hau": {
+      "components": 403,
+      "sentence_nodes": 2753,
+      "largest_component_sentence_nodes": 1364,
+      "cross_split_components": 131,
+      "rows_in_cross_split_components": {
+        "train": 1469,
+        "test": 545,
+        "dev": 190
+      },
+      "split_component_counts": {
+        "train": 322,
+        "dev": 69,
+        "test": 169
+      }
+    },
+    "kin": {
+      "components": 826,
+      "sentence_nodes": 1851,
+      "largest_component_sentence_nodes": 10,
+      "cross_split_components": 72,
+      "rows_in_cross_split_components": {
+        "train": 92,
+        "test": 59,
+        "dev": 32
+      },
+      "split_component_counts": {
+        "train": 620,
+        "dev": 73,
+        "test": 212
+      }
+    }
+  },
+  "label_access": false,
+  "interpretation": "Sentence reuse connects rows but does not prove copied pair-label leakage; official split is not sentence-disjoint."
+}
