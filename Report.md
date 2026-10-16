@@ -1,33 +1,37 @@
-# Relatedness experiment report
+# Sentence relatedness results
 
-The validation-selected ranking MLP reached final macro Spearman **0.54864**, below character overlap's **0.58204**. Rank correlation was lower in all three languages. Macro MAE improved from **0.23902** to **0.16797**. The frozen choice was kept; no test-guided switch was made.
+The validation-selected global blend achieves test macro Spearman **0.55807**, compared with **0.50076** for character overlap. Macro MAE is **0.23779** versus **0.29204**. All nine language rank correlations improve; Punjabi is still negative.
 
-| Language | Test pairs | Model Spearman | Character Spearman | Model MAE | Character MAE |
+| Language | Test pairs | Selected Spearman | Character Spearman | Selected MAE | Character MAE |
 |---|---:|---:|---:|---:|---:|
-| Amharic | 171 | 0.67256 | 0.72738 | 0.15294 | 0.24157 |
-| Hausa | 603 | 0.50499 | 0.53051 | 0.19059 | 0.25145 |
-| Kinyarwanda | 222 | 0.46838 | 0.48825 | 0.16039 | 0.22406 |
+| afr | 375 | 0.79962 | 0.77011 | 0.24640 | 0.31544 |
+| amh | 171 | 0.77002 | 0.72738 | 0.19021 | 0.24157 |
+| arb | 595 | 0.55576 | 0.50238 | 0.33842 | 0.43616 |
+| arq | 583 | 0.55672 | 0.53862 | 0.33432 | 0.44755 |
+| ary | 426 | 0.75391 | 0.63185 | 0.14419 | 0.18525 |
+| hau | 603 | 0.61322 | 0.53051 | 0.21971 | 0.25145 |
+| ind | 360 | 0.53223 | 0.52590 | 0.22259 | 0.22052 |
+| kin | 222 | 0.61163 | 0.48825 | 0.18041 | 0.22406 |
+| pan | 634 | -0.17052 | -0.20820 | 0.26383 | 0.30634 |
 
-## Recipe and selection
+## Data and recipe
 
-Pinned SemRel2024 revision 3c5941ddffdc9d833a5528f49dd13ed9087c0dba: the prepared cohort contains 3,456 training, 386 development and 996 test pairs after text-only auditing removed 50 Kinyarwanda training duplicates and 23 development pairs duplicating test pairs; the test cohort stayed unchanged. Gold remained sealed during model choice.
+The official nine-language compatible cohort has 5,691 training, 1,370 development and 3,969 test pairs. Text-only guards remove 51 training duplicate/protected pairs and 23 development pairs duplicating test; the complete test cohort remains unchanged. All 23 source CSV hashes are checked against revision `3c5941ddffdc9d833a5528f49dd13ed9087c0dba`. This is nine human-source-compatible languages, not the entire 14-language shared task.
 
-Frozen AfroXLMR revision 25f27299c247a6b73a767bd82d12444138b19337 uses attention-mask mean pooling, no random pooler, unit embeddings and max 128 tokens. No encoded sentence was truncated. Symmetric absolute difference/product/cosine plus word/character overlap yield 1,539 features. Scaling and loss weights use training only.
+Pinned E5 uses 512-token masked mean pooling, `query: ` on both sentences and unit normalization. No sentence in the full cache is truncated. Absolute difference/product/cosine plus word/character overlap give 1,539 symmetric features. Three ranking MLPs use 128 hidden units, dropout 0.2, AdamW LR 0.001/decay 0.01, batch 64, train-only scaling and equal-five-language weights. Ranking weight 0.1 compares human-order gaps of at least 0.1. Seeds 42/1337/2026 stop on development Spearman with patience six; their selected epochs are 2/1/1, after completed fits of 8/7/7 epochs.
 
-The first study trained ridge penalties 1/10/100 and nine MLP heads. Equal-seed control MLP reached development Spearman 0.55548 versus character overlap's 0.44296; ridge, slower LR and stronger regularization failed to improve it.
+The final score uses 25% mean learned prediction and 75% character overlap. Development Spearman rises from 0.45429 to 0.53164. Selection requires +0.005 macro gain and no language decline greater than 0.02; the worst selected change is -0.01706. Higher semantic weights fail that guard. This is a single global policy, with no language-specific fallback or test-driven switch.
 
-A separately frozen follow-up trained nine more heads with ranking-loss weights 0.03/0.1/0.3. Architecture stayed 128 hidden units, dropout 0.2, AdamW LR 0.001/decay 0.01, batch 64, gradient clip 1, validation checkpointing and plateau stopping. Human rating order within language/minibatch supplied ranking terms. Weight 0.1 reached 0.56289 and met the +0.005 macro/no >0.02 language-regression rule. Hausa development rank fell by 0.01067; that was within the guard.
+## Evaluation and inference checks
 
-## Checks and uncertainty
+All 3,969 test pairs were scored once after the hash-bound policy freeze and real-text proof. The six additional language tests score **0.50462** versus **0.46011**; the three previously observed language tests score **0.66496** versus **0.58204**. The selected model was retained after evaluation without refitting or adjusting the blend.
 
-The selected checkpoint is models/selected-v1/selected.pt, SHA256 293b99ca441829ba9cf36a60ce118384e54c0af8cf791dc222ea7e6eb286fc7d. Actual text inference matched cached predictions within 1.2e-7; reversed pairs matched exactly. The main notebook repeats one fixed selected fit and verifies its recorded state.
+A paired, language-stratified sentence-component bootstrap gives macro Spearman interval **[0.53335, 0.58272]** and model-minus-baseline interval **[0.04624, 0.06943]**, using 1,000 valid resamples. These are conditional descriptive intervals, not independent-document guarantees.
 
-Test gold was parsed once after global policy freeze and real-text proof. Selection hashes stayed unchanged. Language-stratified sentence-component bootstrap used 1,000 resamples: model macro Spearman interval [0.49273, 0.60546]; paired model-minus-character interval [-0.09107, 0.02523]. This does not establish a rank gain.
+Selected checkpoint SHA256: `43b16caca7c625d5513914da1eed338d40e41e11fd94e10381e2d8bd9859240e`. Actual 18-pair E5 text/reversal inference matches cached predictions within **1.79e-7**, with exact reversal agreement. Backbone loading has no missing, mismatched or erroneous keys; the unused pretrained pooler is excluded. The main notebook executes complete source preparation, real gradient updates and all-development saved-model replay; its full training curves come from the measured cloud run.
 
-[Ledger](docs/experiment-ledger.json) retains run versions, protocol hashes, source correction, failed comparisons and exposure timing. Both studies' learning curves remain in their aggregate selection reports.
+The [frozen policy](docs/frozen-policy.json), [training aggregate](docs/training-results.json), [test aggregate](docs/final-test.json) and [text proof](docs/inference-proof.json) provide the exact hashes, histories and framework versions. [README](README.md) gives fresh training and prediction commands.
 
 ## Limits
 
-Hausa has a 1,364-sentence connected component crossing splits. Pair-copy removal does not make evaluation sentence-disjoint. Pretraining overlap is unknown, development cohorts are small, and the bootstrap is conditional on available groups.
-
-The first encoder attempt failed before model loading because Windows CRLF bytes differed from Linux LF; canonical LF fixed the hash contract without changing any row. GPU quota was exhausted, so encoding used cloud CPU and heads used local CPU with different framework versions. Encoder fine-tuning was not run. These results claim neither an optimum nor independent document/location transfer.
+Punjabi test Spearman is -0.17052; the model does not provide useful Punjabi ranking. Indonesian rating MAE is slightly worse despite its rank gain. Development cohorts vary sharply in size and selection was repeated. Sentence reuse connects official partitions, and pretrained exposure is unknown. Three tests were previously observed, so pooled evaluation is not wholly blind. Scores are not calibrated probabilities; independent-source transfer remains unmeasured.

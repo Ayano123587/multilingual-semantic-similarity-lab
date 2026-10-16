@@ -1,0 +1,23 @@
+{
+  "selected_checkpoint_sha256": "43b16caca7c625d5513914da1eed338d40e41e11fd94e10381e2d8bd9859240e",
+  "frozen_policy_sha256": "c3c6bddc526c36b45b01dfd06b1a53f61a51eac6b998ce21303a118673222b9f",
+  "test_report_sha256": "140f866e960c0e4480c8378a10fdf1706a689e576dcb7437776c089657bf97d3",
+  "inference_proof_sha256": "817da2166a75f8a510e4aff0a38bb6de08e172e32dd403f973468cbaa713cba8",
+  "release_marker_sha256": "056f9742c98baa8d2e0ac05cea3f9aad1403977c3b06174c873718c1a03f5c88",
+  "dispatch_receipt_sha256": "ee4a49e394a0fa303951a4f35d5d3bb7c82e793f93645217e93d630f50ed3833",
+  "evaluation_environment": {
+    "python": "3.14.2",
+    "versions": {
+      "torch": "2.14.0+cpu",
+      "numpy": "2.4.2",
+      "scipy": "1.17.0",
+      "scikit-learn": "1.8.0",
+      "transformers": "4.57.6"
+    },
+    "configured_torch_threads": 2,
+    "device": "CPU"
+  },
+  "evaluation_exit_code": 0,
+  "test_rows": 3969,
+  "test_exposure": "Three language tests previously observed; six additional language targets released once after frozen model and real-text proof. No refit or policy change after release."
+}

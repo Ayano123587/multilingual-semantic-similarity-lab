@@ -1,0 +1,62 @@
+{
+  "revision": "3c5941ddffdc9d833a5528f49dd13ed9087c0dba",
+  "coverage_file": "docs/full-cohort-v3-coverage.json",
+  "coverage_sha256": "f8464b3a4a7abc53a2b39bcb7b3b9256f3b9934a4ea2d1d11ab5005c5f705e56",
+  "processed_sha256": {
+    "train": "152d86e6295bf5db4a97056de095db913e919c41303221c7a044052c33936c63",
+    "dev": "e16efa787e68981fe8d15e08c3997b1abc8e6624a1cf747da36cd1bc513390b2",
+    "test": "5a2a1b52b35ce726246842edbfb252085c23addcc8b36a5a78388abaa164d827"
+  },
+  "official_counts": {
+    "train": 5691,
+    "dev": 1370,
+    "test": 3969
+  },
+  "prepared_counts": {
+    "train": 5640,
+    "dev": 1347,
+    "test": 3969
+  },
+  "languages": [
+    "afr",
+    "amh",
+    "arb",
+    "arq",
+    "ary",
+    "hau",
+    "ind",
+    "kin",
+    "pan"
+  ],
+  "status": "frozen_before_global_prior_candidate_scoring_or_fitting",
+  "hypothesis": "A single global lexical prior or three-score monotone learned regressor preserves lexical ranking across evaluation-only languages while using genuinely trained E5 semantic evidence; no language routing or test-guided adaptation.",
+  "prior_protocol_sha256": "bcebe94db92d20945f4c229fb7f9aca813786d931118d31982b3b9a993dc2ef8",
+  "prior_selection_sha256": "a310a055f0856c66b79b875618f7b1d31373987bb4a00df8f625617257542e82",
+  "component_checkpoint_sha256": "3897ff277234b8832d96e7228487a1a876f19a17579b43aa1e7241bc0694d44d",
+  "component": "Fixed highest-nine-language-validation E5 learned family from the matched encoder study; three seeds42/1337/2026. No refit or test scoring.",
+  "encoder_receipt_sha256": {
+    "afro": "bed1b1cd91a5b728bbd5d4897e692ff1f86fb38dc9f408cfd052b5c9e5fad539",
+    "e5": "c470cc849623f3cf0bcd7e537ee7f61d3b07ac14dccdf9d4d57987973d8d0c75"
+  },
+  "global_blend_weights": [
+    0,
+    0.0625,
+    0.125,
+    0.25,
+    0.5,
+    0.75,
+    1
+  ],
+  "nonnegative_penalties": [
+    0,
+    0.01,
+    0.1
+  ],
+  "training": "Three deterministic bounded least-squares fits: sigmoid-free linear predictions clipped[0,1], train-only standardization of mapped E5 cosine/word Jaccard/character Jaccard, nonnegative coefficients and unconstrained unpenalized intercept; equal-five-language weighted MSE plus coefficient L2. Solver tolerance1e-10,max1000iterations. No language identity feature.",
+  "selection": "Strongest fixed baseline unchanged. Candidate requires +0.005 equal-nine-language macro Spearman and no language regression greater than0.02. Earlier blend weight then earlier linear penalty breaks exact ties; highest eligible macro wins, otherwise retain baseline. Development only, no per-language routing.",
+  "uncertainty": "Paired language-stratified sentence-component bootstrap is descriptive; repeated development selection is not nested validation.",
+  "actual_proof": "Saved candidate replay on all development pairs; selected real-text inference/reversal versus cached features required before global freeze and any gold release.",
+  "test": "No test targets loaded. Three language tests previously observed; six additional language targets remain unopened. No policy switch from test outcomes.",
+  "compute": "Cached CPU only,2threads, sequential fits; no local encoder. Any selected E5 raw-text proof runs privately in cloud CPU.",
+  "stop": "Evaluate this fixed ten-policy comparison once. If no eligible improvement, preserve baseline and inspect validation errors before proposing any distinct learning hypothesis; no automatic grid expansion."
+}

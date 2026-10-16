@@ -1,41 +1,51 @@
-# Multilingual relatedness models
+# Multilingual sentence relatedness
 
-Sentence-pair scoring for Amharic, Hausa and Kinyarwanda, trained on real human-rated SemRel2024 news text. Frozen AfroXLMR embeddings, symmetric pair features and lexical overlap feed a small regression MLP.
+A sentence-pair scorer trained on human-rated SemRel2024 text. A pinned multilingual E5 encoder feeds three trained ranking MLPs; their mean contributes 25% of the score and Unicode character overlap contributes 75%. One global rule serves the nine evaluated languages.
 
-| Model | Development Spearman | Final test Spearman | Test MAE |
+| Model | Development Spearman | Test Spearman | Test MAE |
 |---|---:|---:|---:|
-| Character overlap | 0.44296 | 0.58204 | 0.23902 |
-| Validation-selected ranking MLP | 0.56289 | 0.54864 | 0.16797 |
+| Character overlap | 0.45429 | 0.50076 | 0.29204 |
+| Validation-selected blend | **0.53164** | **0.55807** | **0.23779** |
 
-The learned model missed the heldout ranking goal. It reduced rating error, but character overlap ranked pairs better in all three test languages. The checkpoint was not replaced after seeing that result.
+The run includes every available official split from nine verified human-source-compatible languages: 5,640 training, 1,347 development and 3,969 unchanged test pairs after text-only duplicate guards. Five languages provide training; four are cross-lingual evaluation only. The shared task has 14 languages. Five mixed generated/translated-source collections are excluded in full. [Source audit and terms](docs/provenance.md) explain the boundary.
 
 ## Notebooks
 
-- [Model and experiments](notebooks/01_complete_relatedness_workflow.ipynb): visible preprocessing, encoder, model, losses, training loop and scorer; genuine full-data replay; all learned comparisons and curves.
-- [Data audit](notebooks/02_data_audit.ipynb): source checks, human rating distributions, language balance, text lengths and sentence-connected groups.
-- [Results and inference](notebooks/03_results_and_inference.ipynb): per-language outcomes, uncertainty, development residuals and actual saved-text inference.
+- [Complete workflow](notebooks/01_complete_relatedness_workflow.ipynb): visible data, encoder, model, losses, training loop and scorer; actual source preparation, gradient updates, checkpoint replay and training/selection curves.
+- [Data audit](notebooks/02_data_audit.ipynb): all source checksums, complete split counts, human ratings, scripts and sentence-connected groups.
+- [Results and inference](notebooks/03_results_and_inference.ipynb): per-language evaluation, component uncertainty, development errors, seed variation and saved-model text/reversal proof.
 
-All three retain executed outputs and embedded plots. They never reopen final gold or rescore test. No raw news pairs or learned weights are published.
+The notebooks retain real executed outputs and embedded plots. They read the saved test aggregate, never reopen gold or repeat test scoring. Raw text, embeddings and weights remain ignored.
 
-## Run
+## Train
 
-~~~bash
-python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+Run from this repository in a separate virtual environment; the projects share a `src` package name.
+
+```bash
 python -m pip install -e ".[dev,notebook]"
-python -m src.data.make_dataset --prepare --output data/processed/semrel-lf-v1
-python scripts/stage_kaggle_source.py --output data/source-staging --processed data/processed/semrel-lf-v1
-python train.py --cache data/features/afro-xlmr-v1 --processed data/processed/semrel-lf-v1 --output models/my-heads
-python -m src.models.ranking_followup --cache data/features/afro-xlmr-v1 --processed data/processed/semrel-lf-v1 --prior models/my-heads --output models/my-ranking-study
-python -m src.models.predict --checkpoint models/my-ranking-study/selected.pt --input data/my-real-pairs.jsonl --output data/my-new-prediction.json
+python -m src.data.full_cohort --raw data/raw/semrel-full-v3 --output data/processed/semrel-full-v3
+python scripts/build_embeddings.py --variant afro --output data/features/embeddings-afro
+python scripts/build_embeddings.py --variant e5 --output data/features/embeddings-e5
+python train.py --cache-afro data/features/embeddings-afro --cache-e5 data/features/embeddings-e5 --processed data/processed/semrel-full-v3 --output models/my-heads
+python scripts/freeze_score_prior.py --prior models/my-heads --cache-afro data/features/embeddings-afro --cache-e5 data/features/embeddings-e5 --output data/reports/my-prior-protocol.json
+python train.py --cache-afro data/features/embeddings-afro --cache-e5 data/features/embeddings-e5 --processed data/processed/semrel-full-v3 --prior models/my-heads --protocol data/reports/my-prior-protocol.json --output models/my-selected
 python -m pytest -q
-~~~
+```
 
-Use the ordinary readable source files from the staging command with scripts/kaggle_encode.py in a private CPU kernel. It creates the authentic embedding cache and records loading keys, checksums and truncation. Encoder work needs substantial RAM; cached-head fitting needs much less.
+Use fresh output paths. Encoder work needs substantial RAM; the measured encoding/training run used private cloud CPU with two threads. [Plain-file cloud staging](scripts/stage_full_cohort.py) and the [readable runner](scripts/kaggle_sentence_comparison.py) support cloud execution. No private artifact is required for a cold-start run. Fresh artifacts get their own frozen follow-up protocol rather than overwriting the published run's hashes.
 
-Training uses train/development only. It rejects existing output directories and preserves every seed. Final evaluation is a separate action; evaluation_scripts/evaluate.py requires explicit gold release and an immutable selection, then prevents a second release for that selection.
+## Inference
 
-## Sources and limits
+Input JSONL rows contain `sentence1` and `sentence2`, without labels:
 
-[SemRel2024](https://arxiv.org/html/2402.08638v5) supplies the human news pairs. [AfroXLMR](https://huggingface.co/Davlan/afro-xlmr-base) supplies the frozen encoder. Exact revisions, source terms and hashes are in [provenance](docs/provenance.md) and the [experiment ledger](docs/experiment-ledger.json).
+```bash
+python -m src.models.full_inference --checkpoint models/my-selected/selected.pt --input data/my-real-pairs.jsonl --output data/my-new-scores.json
+```
 
-Official splits reuse individual sentences and are not sentence-disjoint. Upstream pretraining overlap is unknown. Small development cohorts and repeated selection limit the conclusions; the component-bootstrap rank-difference interval spans zero. [Report](Report.md) gives the recipe, failures and final numbers.
+The privately retained selected artifact is `models/selected/selected.pt`. Real-text inference matched cached scores within 1.79e-7; reversed pairs matched exactly. Final evaluation is separate and requires an explicit hash-bound freeze, inference proof and one-shot gold release; it is not part of training or notebook execution.
+
+## Limits
+
+Punjabi remains negatively correlated, and Indonesian MAE slightly increases. Official splits share sentences, upstream pretrained exposure is unknown, and development selection was repeated. Three language tests were already observed; six additional language tests were released once after the final policy freeze. The pooled score is not wholly untouched.
+
+[Report](Report.md) gives per-language results and conditional uncertainty. [Reproducibility files](docs/frozen-policy.json) bind the selected model, source, caches and protocol. Code is MIT; upstream corpus terms are separate. No raw dataset or model weights are redistributed.

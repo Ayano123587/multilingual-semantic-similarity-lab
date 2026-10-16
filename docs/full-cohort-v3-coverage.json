@@ -1,0 +1,300 @@
+{
+  "revision": "3c5941ddffdc9d833a5528f49dd13ed9087c0dba",
+  "primary_provenance": "https://arxiv.org/html/2402.08638v5#S3.SS1.SSS2",
+  "included_languages": [
+    "afr",
+    "amh",
+    "arb",
+    "arq",
+    "ary",
+    "hau",
+    "ind",
+    "kin",
+    "pan"
+  ],
+  "official_train_languages": [
+    "amh",
+    "arq",
+    "ary",
+    "hau",
+    "kin"
+  ],
+  "files": {
+    "afr_dev": {
+      "path": "Track B/afr/afr_dev_with_labels.csv",
+      "url": "https://raw.githubusercontent.com/semantic-textual-relatedness/Semantic_Relatedness_SemEval2024/3c5941ddffdc9d833a5528f49dd13ed9087c0dba/Track%20B/afr/afr_dev_with_labels.csv",
+      "sha256": "d544a2e09ce02820d80b10710d732850c5b4a8bc83cba542eed19270c44e302a",
+      "rows": 375,
+      "header": [
+        "PairID",
+        "Text",
+        "score"
+      ]
+    },
+    "afr_test": {
+      "path": "Track B/afr/afr_test_with_labels.csv",
+      "url": "https://raw.githubusercontent.com/semantic-textual-relatedness/Semantic_Relatedness_SemEval2024/3c5941ddffdc9d833a5528f49dd13ed9087c0dba/Track%20B/afr/afr_test_with_labels.csv",
+      "sha256": "d301b3c75eb4f3a97fa35d2084d21b0db35a20aa90d2f5bcd781fbfad7884d76",
+      "rows": 375,
+      "header": [
+        "PairID",
+        "Text",
+        "Score"
+      ]
+    },
+    "amh_train": {
+      "path": "Track A/amh/amh_train.csv",
+      "url": "https://raw.githubusercontent.com/semantic-textual-relatedness/Semantic_Relatedness_SemEval2024/3c5941ddffdc9d833a5528f49dd13ed9087c0dba/Track%20A/amh/amh_train.csv",
+      "sha256": "33847fcf914f96e1e47b2806362958afd1be365bbd464a51a276d6782aac96f6",
+      "rows": 992,
+      "header": [
+        "PairID",
+        "Text",
+        "Score"
+      ]
+    },
+    "amh_dev": {
+      "path": "Track A/amh/amh_dev_with_labels.csv",
+      "url": "https://raw.githubusercontent.com/semantic-textual-relatedness/Semantic_Relatedness_SemEval2024/3c5941ddffdc9d833a5528f49dd13ed9087c0dba/Track%20A/amh/amh_dev_with_labels.csv",
+      "sha256": "3cf303cd409b0e9eb0ac67d1c8b0c559da57a484b37c370f55248bb8f4df5515",
+      "rows": 95,
+      "header": [
+        "PairID",
+        "Text",
+        "Score"
+      ]
+    },
+    "amh_test": {
+      "path": "Track A/amh/amh_test_with_labels.csv",
+      "url": "https://raw.githubusercontent.com/semantic-textual-relatedness/Semantic_Relatedness_SemEval2024/3c5941ddffdc9d833a5528f49dd13ed9087c0dba/Track%20A/amh/amh_test_with_labels.csv",
+      "sha256": "8b88797a6f3b22608f3159d6ca47bcf46fb012d248060bbbe1e8f66245f7b422",
+      "rows": 171,
+      "header": [
+        "PairID",
+        "Text",
+        "Score"
+      ]
+    },
+    "arb_dev": {
+      "path": "Track B/arb/arb_dev_with_labels.csv",
+      "url": "https://raw.githubusercontent.com/semantic-textual-relatedness/Semantic_Relatedness_SemEval2024/3c5941ddffdc9d833a5528f49dd13ed9087c0dba/Track%20B/arb/arb_dev_with_labels.csv",
+      "sha256": "03eb381d3fdbe6d91e0943fc456ba6c9daa2da9ac1ab3fb526d220c12a474409",
+      "rows": 32,
+      "header": [
+        "PairID",
+        "Text",
+        "Score"
+      ]
+    },
+    "arb_test": {
+      "path": "Track B/arb/arb_test_with_labels.csv",
+      "url": "https://raw.githubusercontent.com/semantic-textual-relatedness/Semantic_Relatedness_SemEval2024/3c5941ddffdc9d833a5528f49dd13ed9087c0dba/Track%20B/arb/arb_test_with_labels.csv",
+      "sha256": "26c4a1b89bc3c2a8de6cdca22baf0a01c7144dd68b767826d8a79411d7dca0d4",
+      "rows": 595,
+      "header": [
+        "PairID",
+        "Text",
+        "Score"
+      ]
+    },
+    "arq_train": {
+      "path": "Track A/arq/arq_train.csv",
+      "url": "https://raw.githubusercontent.com/semantic-textual-relatedness/Semantic_Relatedness_SemEval2024/3c5941ddffdc9d833a5528f49dd13ed9087c0dba/Track%20A/arq/arq_train.csv",
+      "sha256": "c1a86af4108b81071639549c6deafb58a7adc0297ce124341f47b053d1d2dd0a",
+      "rows": 1261,
+      "header": [
+        "PairID",
+        "Text",
+        "Score"
+      ]
+    },
+    "arq_dev": {
+      "path": "Track A/arq/arq_dev_with_labels.csv",
+      "url": "https://raw.githubusercontent.com/semantic-textual-relatedness/Semantic_Relatedness_SemEval2024/3c5941ddffdc9d833a5528f49dd13ed9087c0dba/Track%20A/arq/arq_dev_with_labels.csv",
+      "sha256": "5a22c13fc0ed49d49403dcbe29fd3efcc9aed1b0fb6a49b278cf4151609a01ae",
+      "rows": 97,
+      "header": [
+        "PairID",
+        "Text",
+        "Score"
+      ]
+    },
+    "arq_test": {
+      "path": "Track A/arq/arq_test_with_labels.csv",
+      "url": "https://raw.githubusercontent.com/semantic-textual-relatedness/Semantic_Relatedness_SemEval2024/3c5941ddffdc9d833a5528f49dd13ed9087c0dba/Track%20A/arq/arq_test_with_labels.csv",
+      "sha256": "675ef272446676d125c0db63203a1ef478ab04222adcaa1831d9f46f85ab65b4",
+      "rows": 583,
+      "header": [
+        "PairID",
+        "Text",
+        "Score"
+      ]
+    },
+    "ary_train": {
+      "path": "Track A/ary/ary_train.csv",
+      "url": "https://raw.githubusercontent.com/semantic-textual-relatedness/Semantic_Relatedness_SemEval2024/3c5941ddffdc9d833a5528f49dd13ed9087c0dba/Track%20A/ary/ary_train.csv",
+      "sha256": "7017fb5b58f23231ac4d5601123dd11bcd8967d3a3057277e88ddf329324b938",
+      "rows": 924,
+      "header": [
+        "PairID",
+        "Text",
+        "Score"
+      ]
+    },
+    "ary_dev": {
+      "path": "Track A/ary/ary_dev_with_labels.csv",
+      "url": "https://raw.githubusercontent.com/semantic-textual-relatedness/Semantic_Relatedness_SemEval2024/3c5941ddffdc9d833a5528f49dd13ed9087c0dba/Track%20A/ary/ary_dev_with_labels.csv",
+      "sha256": "14fc7960afdc212145a1a959bff799feeda5993437ce341e0152ba8c3f9f893d",
+      "rows": 71,
+      "header": [
+        "PairID",
+        "Text",
+        "Score"
+      ]
+    },
+    "ary_test": {
+      "path": "Track A/ary/ary_test_with_labels.csv",
+      "url": "https://raw.githubusercontent.com/semantic-textual-relatedness/Semantic_Relatedness_SemEval2024/3c5941ddffdc9d833a5528f49dd13ed9087c0dba/Track%20A/ary/ary_test_with_labels.csv",
+      "sha256": "b7f0a95a13bf4781a2f3e7d12ef212146cd8fd520a21fce144465decdf910a59",
+      "rows": 426,
+      "header": [
+        "PairID",
+        "Text",
+        "Score"
+      ]
+    },
+    "hau_train": {
+      "path": "Track A/hau/hau_train.csv",
+      "url": "https://raw.githubusercontent.com/semantic-textual-relatedness/Semantic_Relatedness_SemEval2024/3c5941ddffdc9d833a5528f49dd13ed9087c0dba/Track%20A/hau/hau_train.csv",
+      "sha256": "fef1e27aa6da2295c9c5ce64c8e93ea018070cc6d629aa1d998572d917771618",
+      "rows": 1736,
+      "header": [
+        "PairID",
+        "Text",
+        "Score"
+      ]
+    },
+    "hau_dev": {
+      "path": "Track A/hau/hau_dev_with_labels.csv",
+      "url": "https://raw.githubusercontent.com/semantic-textual-relatedness/Semantic_Relatedness_SemEval2024/3c5941ddffdc9d833a5528f49dd13ed9087c0dba/Track%20A/hau/hau_dev_with_labels.csv",
+      "sha256": "077a10d9710ad3a4f241cfd41a0b404966d6586811f25f192e3db699985472e3",
+      "rows": 212,
+      "header": [
+        "PairID",
+        "Text",
+        "Score"
+      ]
+    },
+    "hau_test": {
+      "path": "Track A/hau/hau_test_with_labels.csv",
+      "url": "https://raw.githubusercontent.com/semantic-textual-relatedness/Semantic_Relatedness_SemEval2024/3c5941ddffdc9d833a5528f49dd13ed9087c0dba/Track%20A/hau/hau_test_with_labels.csv",
+      "sha256": "7f166eab81b377e4856d96d36a52e58a862fe4c075acfd4f0c21f6153e5c4f3c",
+      "rows": 603,
+      "header": [
+        "PairID",
+        "Text",
+        "Score"
+      ]
+    },
+    "ind_dev": {
+      "path": "Track B/ind/ind_dev_with_labels.csv",
+      "url": "https://raw.githubusercontent.com/semantic-textual-relatedness/Semantic_Relatedness_SemEval2024/3c5941ddffdc9d833a5528f49dd13ed9087c0dba/Track%20B/ind/ind_dev_with_labels.csv",
+      "sha256": "b55143fb8405512be7f437a6d115c1d450966c7f3fdf298f8d7b6ca6b24911aa",
+      "rows": 144,
+      "header": [
+        "PairID",
+        "Text",
+        "Score"
+      ]
+    },
+    "ind_test": {
+      "path": "Track B/ind/ind_test_with_labels.csv",
+      "url": "https://raw.githubusercontent.com/semantic-textual-relatedness/Semantic_Relatedness_SemEval2024/3c5941ddffdc9d833a5528f49dd13ed9087c0dba/Track%20B/ind/ind_test_with_labels.csv",
+      "sha256": "a6ce2c401a0d0b9131dbb2d180d5c93c0841fd16f42b14f0b5007ba4df82c106",
+      "rows": 360,
+      "header": [
+        "PairID",
+        "Text",
+        "Score"
+      ]
+    },
+    "kin_train": {
+      "path": "Track A/kin/kin_train.csv",
+      "url": "https://raw.githubusercontent.com/semantic-textual-relatedness/Semantic_Relatedness_SemEval2024/3c5941ddffdc9d833a5528f49dd13ed9087c0dba/Track%20A/kin/kin_train.csv",
+      "sha256": "03cb184d2bf4bfd91267f555a794414773854bbb74da409a4bdabc0c1505c2f3",
+      "rows": 778,
+      "header": [
+        "PairID",
+        "Text",
+        "Score"
+      ]
+    },
+    "kin_dev": {
+      "path": "Track A/kin/kin_dev_with_labels.csv",
+      "url": "https://raw.githubusercontent.com/semantic-textual-relatedness/Semantic_Relatedness_SemEval2024/3c5941ddffdc9d833a5528f49dd13ed9087c0dba/Track%20A/kin/kin_dev_with_labels.csv",
+      "sha256": "b0bf3b918ecfacfc837d1a909a9ad1f978c185a40eb8e6f4e43887c707d3da71",
+      "rows": 102,
+      "header": [
+        "PairID",
+        "Text",
+        "Score"
+      ]
+    },
+    "kin_test": {
+      "path": "Track A/kin/kin_test_with_labels.csv",
+      "url": "https://raw.githubusercontent.com/semantic-textual-relatedness/Semantic_Relatedness_SemEval2024/3c5941ddffdc9d833a5528f49dd13ed9087c0dba/Track%20A/kin/kin_test_with_labels.csv",
+      "sha256": "a9258444caea42153f159955e075070f191b8481e939c13c31f074fd47279282",
+      "rows": 222,
+      "header": [
+        "PairID",
+        "Text",
+        "Score"
+      ]
+    },
+    "pan_dev": {
+      "path": "Track B/pan/pan_dev_with_labels.csv",
+      "url": "https://raw.githubusercontent.com/semantic-textual-relatedness/Semantic_Relatedness_SemEval2024/3c5941ddffdc9d833a5528f49dd13ed9087c0dba/Track%20B/pan/pan_dev_with_labels.csv",
+      "sha256": "0e6914532c4dc60f493c8a8059f59602536c828733588431a168f1621f7e465e",
+      "rows": 242,
+      "header": [
+        "Text",
+        "Score",
+        "PairID"
+      ]
+    },
+    "pan_test": {
+      "path": "Track B/pan/pan_test_with_labels.csv",
+      "url": "https://raw.githubusercontent.com/semantic-textual-relatedness/Semantic_Relatedness_SemEval2024/3c5941ddffdc9d833a5528f49dd13ed9087c0dba/Track%20B/pan/pan_test_with_labels.csv",
+      "sha256": "0348304ac453204508e7687e9f629cda46da656cdb40bfc6b999704f20433b58",
+      "rows": 634,
+      "header": [
+        "Text",
+        "Score",
+        "PairID"
+      ]
+    }
+  },
+  "scope": "Every official row of nine human-source-compatible languages, subject only to documented duplicate guards; five mixed-generated-source languages excluded from the fourteen-language shared task.",
+  "exclusions": {
+    "eng": "Mixed ParaNMT machine-translated paraphrases; no reliable per-row origin tag.",
+    "esp": "Mixed PAWS-X translated paraphrases with algorithmically constructed English PAWS ancestry; row-level source not recoverable; labeled test absent from pinned TrackA.",
+    "hin": "Mukhyansh paraphrase generation in source mixture; no per-row origin tag.",
+    "mar": "Mukhyansh paraphrase generation in source mixture; no per-row origin tag.",
+    "tel": "Mukhyansh paraphrase generation in source mixture; no per-row origin tag."
+  },
+  "no_sampling": true,
+  "test_scores_parsed": false,
+  "source_license": "No explicit corpus license found; private research artifacts only.",
+  "exclusion_primary_sources": [
+    "https://arxiv.org/html/2402.08638v5",
+    "https://aclanthology.org/D19-1382/",
+    "https://arxiv.org/html/2403.18933v2",
+    "https://arxiv.org/html/2402.08638v1"
+  ],
+  "official_shared_task_languages": 14,
+  "punjabi_source": {
+    "primary": "https://arxiv.org/html/2402.08638v1#S3.SS1.SSS1",
+    "text": "Varta news headlines paired by lexical overlap; native-speaker best-worst ratings."
+  },
+  "evaluation_limit": "Amharic, Hausa and Kinyarwanda test splits were previously observed."
+}

@@ -16,3 +16,6 @@ SOURCE_HASHES = {
     'kin_train.csv':'03cb184d2bf4bfd91267f555a794414773854bbb74da409a4bdabc0c1505c2f3',
     'kin_dev_with_labels.csv':'b0bf3b918ecfacfc837d1a909a9ad1f978c185a40eb8e6f4e43887c707d3da71',
     'kin_test_with_labels.csv':'a9258444caea42153f159955e075070f191b8481e939c13c31f074fd47279282'}
+
+# Complete provenance-compatible shared-task cohort used by the current pipeline.
+HUMAN_COMPATIBLE_LANGUAGES = ('afr', 'amh', 'arb', 'arq', 'ary', 'hau', 'ind', 'kin', 'pan')

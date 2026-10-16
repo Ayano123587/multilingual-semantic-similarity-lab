@@ -1,0 +1,144 @@
+{
+  "status": "frozen_before_nine_language_encoder_inference_or_fitting",
+  "hypothesis": "Sentence-contrastive multilingual E5 features improve relatedness and zero-shot transfer over MLM-only AfroXLMR features under matched human-source data and head objectives.",
+  "revision": "3c5941ddffdc9d833a5528f49dd13ed9087c0dba",
+  "coverage_file": "docs/full-cohort-v3-coverage.json",
+  "coverage_sha256": "f8464b3a4a7abc53a2b39bcb7b3b9256f3b9934a4ea2d1d11ab5005c5f705e56",
+  "processed_sha256": {
+    "train": "152d86e6295bf5db4a97056de095db913e919c41303221c7a044052c33936c63",
+    "dev": "e16efa787e68981fe8d15e08c3997b1abc8e6624a1cf747da36cd1bc513390b2",
+    "test": "5a2a1b52b35ce726246842edbfb252085c23addcc8b36a5a78388abaa164d827"
+  },
+  "official_counts": {
+    "train": 5691,
+    "dev": 1370,
+    "test": 3969
+  },
+  "prepared_counts": {
+    "train": 5640,
+    "dev": 1347,
+    "test": 3969
+  },
+  "languages": [
+    "afr",
+    "amh",
+    "arb",
+    "arq",
+    "ary",
+    "hau",
+    "ind",
+    "kin",
+    "pan"
+  ],
+  "training_languages": [
+    "amh",
+    "arq",
+    "ary",
+    "hau",
+    "kin"
+  ],
+  "cohort": "All rows from nine human-source-compatible languages of the fourteen-language shared task. Five mixed-generated-source languages excluded; 51 train duplicates/protected pairs and23 development test copies removed; all test rows unchanged.",
+  "zero_shot_languages": [
+    "afr",
+    "arb",
+    "ind",
+    "pan"
+  ],
+  "encoders": {
+    "afro": {
+      "model": "Davlan/afro-xlmr-base",
+      "revision": "25f27299c247a6b73a767bd82d12444138b19337",
+      "weights_sha256": "f73b04316c9c2e76fcb213957616a09e1eb44112266717f649fc1897dac42953",
+      "prefix": "",
+      "license": "MIT"
+    },
+    "e5": {
+      "model": "intfloat/multilingual-e5-base",
+      "revision": "d128750597153bb5987e10b1c3493a34e5a4502a",
+      "weights_sha256": "a18a44fad1d0b46ded15928144138cff1135d5cc8233bdd90be5f18822de09a7",
+      "prefix": "query: ",
+      "license": "MIT"
+    }
+  },
+  "encoder_training": false,
+  "encoder_context": 512,
+  "pooling": "Attention-mask mean including valid special tokens; L2; no pooler; complete backbone loading required.",
+  "afro_reuse": {
+    "kernel": "aikyatansinha/semrel-full-compatible-human-cohort-cpu-v2",
+    "version": 2,
+    "receipt_sha256": "e90e96bad4c916bb64f11d8032cc91260a679d26720597f975380ebc76a46470",
+    "basis": "All18101 prior encoded sentences have zero128-token truncation. Identical pinned model/tokenizer/prefix means512-token limit changes no old token input. Retain exact old prefix rows and verify every source/cache hash. Actually encode all new Punjabi sentences and require fresh512-token feature replay on all nine languages before fitting."
+  },
+  "features": "1539 symmetric absolute-difference/product/cosine/word-Jaccard/Unicode-trigram-Jaccard values; scale with training only.",
+  "fixed_baselines": [
+    "cosine",
+    "word_jaccard",
+    "character_jaccard",
+    "train_mean"
+  ],
+  "baseline_scope": "Pairwise lexical sets use no fitted vocabulary and cannot silently drop unseen Gurmukhi as out-of-vocabulary.",
+  "ridge_alphas": [
+    1,
+    10,
+    100
+  ],
+  "head_configs": [
+    {
+      "name": "mlp128",
+      "hidden": 128,
+      "dropout": 0.2,
+      "lr": 0.001,
+      "weight_decay": 0.01,
+      "ranking_weight": 0
+    },
+    {
+      "name": "slower",
+      "hidden": 128,
+      "dropout": 0.2,
+      "lr": 0.0003,
+      "weight_decay": 0.01,
+      "ranking_weight": 0
+    },
+    {
+      "name": "regularized",
+      "hidden": 128,
+      "dropout": 0.5,
+      "lr": 0.0003,
+      "weight_decay": 0.1,
+      "ranking_weight": 0
+    },
+    {
+      "name": "ranking0.1",
+      "hidden": 128,
+      "dropout": 0.2,
+      "lr": 0.001,
+      "weight_decay": 0.01,
+      "ranking_weight": 0.1
+    }
+  ],
+  "seeds": [
+    42,
+    1337,
+    2026
+  ],
+  "optimization": {
+    "optimizer": "AdamW",
+    "batch": 64,
+    "max_epochs": 50,
+    "minimum_epochs": 3,
+    "patience": 6,
+    "clip": 1,
+    "threads": 2
+  },
+  "loss": "Equal-five-training-language weighted MSE plus optional0.1 within-language human-order logistic ranking for score gaps>=0.1.",
+  "selection": "Every seed stops on equal-nine-language development macro Spearman, earliest exact ties. Equal-seed prediction average. First choose strongest fixed baseline across both encoders; learned candidate requires +0.005 macro Spearman and no language regression greater than0.02 against that strongest baseline. Exact ties retain earlier encoder/config; baseline retained if no eligible improvement.",
+  "candidate_order": "Afro then E5; ridge1/10/100 then MLP control/slower/regularized/ranking0.1.",
+  "actual_proofs": "Real nine-language encoder repeat/unit-norm smoke; two real training updates and saved-head reload; after global serialization run production text inference and reversal/cache equivalence on one development pair per language.",
+  "test": "No numeric test targets mounted for encoding/training. Root reviews validation and freezes global checkpoint before separate guarded test release. Three language tests previously observed; report that limitation explicitly. No test-guided selection or switching.",
+  "compute": "One private free Kaggle CPU job,2threads, sequential encoders/heads. No local encoder allocation or GPU-quota bypass.",
+  "limits": [
+    "Repeated development stopping/selection is not nested validation.",
+    "News/source sentence reuse and unknown pretrained exposure remain.",
+    "External E5 pretraining includes multilingual retrieval/parallel mixtures; this project adds no generated fine-tuning rows."
+  ]
+}

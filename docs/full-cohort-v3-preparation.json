@@ -1,0 +1,170 @@
+{
+  "languages": {
+    "afr": {
+      "official": {
+        "train": 0,
+        "dev": 375,
+        "test": 375
+      },
+      "prepared": {
+        "train": 0,
+        "dev": 375,
+        "test": 375
+      },
+      "removed_training_duplicates_or_protected_pairs": 0,
+      "removed_development_pairs_duplicating_test": 0,
+      "test_unchanged": true
+    },
+    "amh": {
+      "official": {
+        "train": 992,
+        "dev": 95,
+        "test": 171
+      },
+      "prepared": {
+        "train": 992,
+        "dev": 95,
+        "test": 171
+      },
+      "removed_training_duplicates_or_protected_pairs": 0,
+      "removed_development_pairs_duplicating_test": 0,
+      "test_unchanged": true
+    },
+    "arb": {
+      "official": {
+        "train": 0,
+        "dev": 32,
+        "test": 595
+      },
+      "prepared": {
+        "train": 0,
+        "dev": 32,
+        "test": 595
+      },
+      "removed_training_duplicates_or_protected_pairs": 0,
+      "removed_development_pairs_duplicating_test": 0,
+      "test_unchanged": true
+    },
+    "arq": {
+      "official": {
+        "train": 1261,
+        "dev": 97,
+        "test": 583
+      },
+      "prepared": {
+        "train": 1260,
+        "dev": 97,
+        "test": 583
+      },
+      "removed_training_duplicates_or_protected_pairs": 1,
+      "removed_development_pairs_duplicating_test": 0,
+      "test_unchanged": true
+    },
+    "ary": {
+      "official": {
+        "train": 924,
+        "dev": 71,
+        "test": 426
+      },
+      "prepared": {
+        "train": 924,
+        "dev": 71,
+        "test": 426
+      },
+      "removed_training_duplicates_or_protected_pairs": 0,
+      "removed_development_pairs_duplicating_test": 0,
+      "test_unchanged": true
+    },
+    "hau": {
+      "official": {
+        "train": 1736,
+        "dev": 212,
+        "test": 603
+      },
+      "prepared": {
+        "train": 1736,
+        "dev": 212,
+        "test": 603
+      },
+      "removed_training_duplicates_or_protected_pairs": 0,
+      "removed_development_pairs_duplicating_test": 0,
+      "test_unchanged": true
+    },
+    "ind": {
+      "official": {
+        "train": 0,
+        "dev": 144,
+        "test": 360
+      },
+      "prepared": {
+        "train": 0,
+        "dev": 144,
+        "test": 360
+      },
+      "removed_training_duplicates_or_protected_pairs": 0,
+      "removed_development_pairs_duplicating_test": 0,
+      "test_unchanged": true
+    },
+    "kin": {
+      "official": {
+        "train": 778,
+        "dev": 102,
+        "test": 222
+      },
+      "prepared": {
+        "train": 728,
+        "dev": 79,
+        "test": 222
+      },
+      "removed_training_duplicates_or_protected_pairs": 50,
+      "removed_development_pairs_duplicating_test": 23,
+      "test_unchanged": true
+    },
+    "pan": {
+      "official": {
+        "train": 0,
+        "dev": 242,
+        "test": 634
+      },
+      "prepared": {
+        "train": 0,
+        "dev": 242,
+        "test": 634
+      },
+      "removed_training_duplicates_or_protected_pairs": 0,
+      "removed_development_pairs_duplicating_test": 0,
+      "test_unchanged": true
+    }
+  },
+  "processed_sha256": {
+    "train": "152d86e6295bf5db4a97056de095db913e919c41303221c7a044052c33936c63",
+    "dev": "e16efa787e68981fe8d15e08c3997b1abc8e6624a1cf747da36cd1bc513390b2",
+    "test": "5a2a1b52b35ce726246842edbfb252085c23addcc8b36a5a78388abaa164d827"
+  },
+  "test_gold_parsed": false,
+  "scope": "Complete nine-language human-source-compatible cohort; all official rows except transparent duplicate guards; excludes five known mixed-generated-source languages from14language sharedtask.",
+  "coverage_sha256": "f8464b3a4a7abc53a2b39bcb7b3b9256f3b9934a4ea2d1d11ab5005c5f705e56",
+  "previously_observed_test_languages": [
+    "amh",
+    "hau",
+    "kin"
+  ],
+  "selection_languages": [
+    "afr",
+    "amh",
+    "arb",
+    "arq",
+    "ary",
+    "hau",
+    "ind",
+    "kin",
+    "pan"
+  ],
+  "training_languages": [
+    "amh",
+    "arq",
+    "ary",
+    "hau",
+    "kin"
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "schema": "semrel_full_policy_v1",
+  "selection_sha256": "1bf42f5c14833d855001e017964f9ee6b90a975d657077f9c5e554fe9b34b4fa",
+  "checkpoint_sha256": "43b16caca7c625d5513914da1eed338d40e41e11fd94e10381e2d8bd9859240e",
+  "baseline_sha256": "11935dc2d80da180b1d7eb26a4ad15f7239f4043dbbbdc86c38fd74554190d18",
+  "protocol_sha256": "68832fa0e177d26a27f662d7cd2c2db715080a72c1eb8507250a54128f9ce164",
+  "coverage_sha256": "f8464b3a4a7abc53a2b39bcb7b3b9256f3b9934a4ea2d1d11ab5005c5f705e56",
+  "processed_sha256": {
+    "train": "152d86e6295bf5db4a97056de095db913e919c41303221c7a044052c33936c63",
+    "dev": "e16efa787e68981fe8d15e08c3997b1abc8e6624a1cf747da36cd1bc513390b2",
+    "test": "5a2a1b52b35ce726246842edbfb252085c23addcc8b36a5a78388abaa164d827"
+  },
+  "encoder_receipt_sha256": {
+    "afro": "bed1b1cd91a5b728bbd5d4897e692ff1f86fb38dc9f408cfd052b5c9e5fad539",
+    "e5": "c470cc849623f3cf0bcd7e537ee7f61d3b07ac14dccdf9d4d57987973d8d0c75"
+  },
+  "selected": "e5/convex-0.25",
+  "strongest_fixed_baseline": "afro/character_jaccard",
+  "languages": [
+    "afr",
+    "amh",
+    "arb",
+    "arq",
+    "ary",
+    "hau",
+    "ind",
+    "kin",
+    "pan"
+  ],
+  "inference_proof_sha256": "817da2166a75f8a510e4aff0a38bb6de08e172e32dd403f973468cbaa713cba8",
+  "previously_observed_test_languages": [
+    "amh",
+    "hau",
+    "kin"
+  ],
+  "evaluation_source_sha256": {
+    "full_evaluation.py": "3ae56214c2ab4cbd21f10da428937dde850bfdb37fc00005014722b6fb6c0339",
+    "full_training.py": "19895afd2def5634291cdbf96cc86095fb1a82bf05ecd0a346e09686464b4eae",
+    "full_inference.py": "21671d9ae36307db1215f82066fbda1dd0cd2b7da7de70b68703f9bc4732be54"
+  },
+  "component_source_sha256": "e715333d2417d73c40380f8b5bf35b1b11c02da94b951d45357e579b77d75cb6"
+}

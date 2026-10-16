@@ -1,0 +1,49 @@
+{
+  "rows": 18,
+  "languages": [
+    "afr",
+    "amh",
+    "arb",
+    "arq",
+    "ary",
+    "hau",
+    "ind",
+    "kin",
+    "pan"
+  ],
+  "checkpoint_sha256": "43b16caca7c625d5513914da1eed338d40e41e11fd94e10381e2d8bd9859240e",
+  "actual_text_vs_cache_max_difference": 1.7881393432617188e-07,
+  "reversal_max_difference": 0.0,
+  "test_gold_loaded": false,
+  "encoder": {
+    "loading": {
+      "missing_keys": [],
+      "unexpected_keys": [
+        "pooler.dense.bias",
+        "pooler.dense.weight"
+      ],
+      "mismatched_keys": [],
+      "error_msgs": []
+    },
+    "model": "intfloat/multilingual-e5-base",
+    "revision": "d128750597153bb5987e10b1c3493a34e5a4502a",
+    "weight_sha256": "a18a44fad1d0b46ded15928144138cff1135d5cc8233bdd90be5f18822de09a7"
+  },
+  "tokenization": {
+    "sentences": 18,
+    "truncated_sentences": 0,
+    "maximum_untruncated_tokens": 69
+  },
+  "source_commit": "fde5cd5b6e43f5e7fb97cbaf98c2397b2afa6dc8",
+  "source_manifest_sha256": "28296baeeaef7ea9264de6952f792fc567482b55bafb65f5ea1bf6f26de4a483",
+  "python": "3.13.15",
+  "versions": {
+    "torch": "2.11.0+cpu",
+    "numpy": "2.1.3",
+    "transformers": "4.57.6",
+    "huggingface-hub": "0.36.2",
+    "safetensors": "0.8.0"
+  },
+  "threads": 2,
+  "seconds": 80.19735050299994
+}

@@ -1,5 +1,5 @@
-# Private learned artifacts
+# Private model artifacts
 
-The validation-selected release is selected-v1/selected.pt, SHA256 293b99ca441829ba9cf36a60ce118384e54c0af8cf791dc222ea7e6eb286fc7d. It averages three ranking-weight 0.1 MLP heads and uses the pinned AfroXLMR source/normalization.
+`selected/selected.pt` is the retained three-seed E5 MLP/character-overlap blend, SHA256 `43b16caca7c625d5513914da1eed338d40e41e11fd94e10381e2d8bd9859240e`. It contains train-only normalization and the fixed global semantic weight 0.25. `selected/baseline.pt` contains the lexical comparison; `selection.json` and `inference-proof.json` bind validation choice and actual text replay.
 
-All encoder weights, checkpoints, caches and raw text remain ignored. The character-overlap comparison is selected-v1/baseline.pt. No test-guided replacement was made. Reproduce the studies through train.py and src.models.ranking_followup; recipes and results are in Report.md.
+All encoder weights, fitted checkpoints, embeddings and raw text remain ignored. The model is trained on the complete available official training cohort, with development-only selection and a separately frozen final evaluation. See [Report](../Report.md) and the [frozen identity](../docs/frozen-policy.json).

@@ -1,0 +1,530 @@
+{
+  "policy": {
+    "schema": "semrel_full_policy_v1",
+    "selection_sha256": "1bf42f5c14833d855001e017964f9ee6b90a975d657077f9c5e554fe9b34b4fa",
+    "checkpoint_sha256": "43b16caca7c625d5513914da1eed338d40e41e11fd94e10381e2d8bd9859240e",
+    "baseline_sha256": "11935dc2d80da180b1d7eb26a4ad15f7239f4043dbbbdc86c38fd74554190d18",
+    "protocol_sha256": "68832fa0e177d26a27f662d7cd2c2db715080a72c1eb8507250a54128f9ce164",
+    "coverage_sha256": "f8464b3a4a7abc53a2b39bcb7b3b9256f3b9934a4ea2d1d11ab5005c5f705e56",
+    "processed_sha256": {
+      "train": "152d86e6295bf5db4a97056de095db913e919c41303221c7a044052c33936c63",
+      "dev": "e16efa787e68981fe8d15e08c3997b1abc8e6624a1cf747da36cd1bc513390b2",
+      "test": "5a2a1b52b35ce726246842edbfb252085c23addcc8b36a5a78388abaa164d827"
+    },
+    "encoder_receipt_sha256": {
+      "afro": "bed1b1cd91a5b728bbd5d4897e692ff1f86fb38dc9f408cfd052b5c9e5fad539",
+      "e5": "c470cc849623f3cf0bcd7e537ee7f61d3b07ac14dccdf9d4d57987973d8d0c75"
+    },
+    "selected": "e5/convex-0.25",
+    "strongest_fixed_baseline": "afro/character_jaccard",
+    "languages": [
+      "afr",
+      "amh",
+      "arb",
+      "arq",
+      "ary",
+      "hau",
+      "ind",
+      "kin",
+      "pan"
+    ],
+    "inference_proof_sha256": "817da2166a75f8a510e4aff0a38bb6de08e172e32dd403f973468cbaa713cba8",
+    "previously_observed_test_languages": [
+      "amh",
+      "hau",
+      "kin"
+    ],
+    "evaluation_source_sha256": {
+      "full_evaluation.py": "3ae56214c2ab4cbd21f10da428937dde850bfdb37fc00005014722b6fb6c0339",
+      "full_training.py": "19895afd2def5634291cdbf96cc86095fb1a82bf05ecd0a346e09686464b4eae",
+      "full_inference.py": "21671d9ae36307db1215f82066fbda1dd0cd2b7da7de70b68703f9bc4732be54"
+    },
+    "component_source_sha256": "e715333d2417d73c40380f8b5bf35b1b11c02da94b951d45357e579b77d75cb6"
+  },
+  "frozen_policy_sha256": "c3c6bddc526c36b45b01dfd06b1a53f61a51eac6b998ce21303a118673222b9f",
+  "test": {
+    "languages": {
+      "afr": {
+        "rows": 375,
+        "spearman": 0.7996160841183305,
+        "pearson": 0.7727031937065584,
+        "mae": 0.2463993229820331
+      },
+      "amh": {
+        "rows": 171,
+        "spearman": 0.7700233245806457,
+        "pearson": 0.7663188672578616,
+        "mae": 0.1902111748375042
+      },
+      "arb": {
+        "rows": 595,
+        "spearman": 0.5557637152072661,
+        "pearson": 0.5353880944679552,
+        "mae": 0.3384225528314084
+      },
+      "arq": {
+        "rows": 583,
+        "spearman": 0.5567207187322899,
+        "pearson": 0.5696392943910833,
+        "mae": 0.33431520717681784
+      },
+      "ary": {
+        "rows": 426,
+        "spearman": 0.7539072114945247,
+        "pearson": 0.733722279380932,
+        "mae": 0.14419332814608382
+      },
+      "hau": {
+        "rows": 603,
+        "spearman": 0.6132248368106173,
+        "pearson": 0.598735815545005,
+        "mae": 0.21970786460201142
+      },
+      "ind": {
+        "rows": 360,
+        "spearman": 0.53223002399092,
+        "pearson": 0.5412372694654134,
+        "mae": 0.22258514323499468
+      },
+      "kin": {
+        "rows": 222,
+        "spearman": 0.6116315770796437,
+        "pearson": 0.5722556426712695,
+        "mae": 0.18040697206382278
+      },
+      "pan": {
+        "rows": 634,
+        "spearman": -0.17051991085019685,
+        "pearson": -0.24217069762836582,
+        "mae": 0.2638306719205733
+      }
+    },
+    "macro_spearman": 0.5580663979071158,
+    "macro_mae": 0.23778580419947218
+  },
+  "baseline": {
+    "languages": {
+      "afr": {
+        "rows": 375,
+        "spearman": 0.7701123900826797,
+        "pearson": 0.7082789650007296,
+        "mae": 0.315439024873525
+      },
+      "amh": {
+        "rows": 171,
+        "spearman": 0.7273757562519377,
+        "pearson": 0.716692285221585,
+        "mae": 0.24156876948362557
+      },
+      "arb": {
+        "rows": 595,
+        "spearman": 0.5023804227944594,
+        "pearson": 0.4699566353495779,
+        "mae": 0.43615721265890267
+      },
+      "arq": {
+        "rows": 583,
+        "spearman": 0.5386181626492719,
+        "pearson": 0.524819296050928,
+        "mae": 0.4475459941448467
+      },
+      "ary": {
+        "rows": 426,
+        "spearman": 0.6318489595296322,
+        "pearson": 0.62892811707522,
+        "mae": 0.1852511742102428
+      },
+      "hau": {
+        "rows": 603,
+        "spearman": 0.5305057647988721,
+        "pearson": 0.5164327889354499,
+        "mae": 0.25144561483788846
+      },
+      "ind": {
+        "rows": 360,
+        "spearman": 0.5259012088407363,
+        "pearson": 0.5385562136449585,
+        "mae": 0.2205190030121141
+      },
+      "kin": {
+        "rows": 222,
+        "spearman": 0.4882520755471488,
+        "pearson": 0.46399784237498454,
+        "mae": 0.22405706769577013
+      },
+      "pan": {
+        "rows": 634,
+        "spearman": -0.20819600710368566,
+        "pearson": -0.2694570526317852,
+        "mae": 0.30633690948177966
+      }
+    },
+    "macro_spearman": 0.5007554148212281,
+    "macro_mae": 0.2920356411554106
+  },
+  "uncertainty": {
+    "seed": 2026,
+    "requested_resamples": 1000,
+    "valid_macro_resamples": 1000,
+    "macro_spearman_95_percentile": [
+      0.5333512236470301,
+      0.5827225298381323
+    ],
+    "paired_macro_spearman_delta_95_percentile": [
+      0.04623600764899323,
+      0.06943353859215586
+    ],
+    "per_language_spearman_95_percentile": {
+      "afr": [
+        0.7591093638529002,
+        0.8281593155894262
+      ],
+      "amh": [
+        0.67311003081951,
+        0.8401511101303049
+      ],
+      "arb": [
+        0.4986978836790954,
+        0.6104869162666412
+      ],
+      "arq": [
+        0.48950757560244174,
+        0.616385233570642
+      ],
+      "ary": [
+        0.6991779009986898,
+        0.7985950732809755
+      ],
+      "hau": [
+        0.5800369725524407,
+        0.6946201808987469
+      ],
+      "ind": [
+        0.44462166971028116,
+        0.6044408009825778
+      ],
+      "kin": [
+        0.5180132269998258,
+        0.6843317511518027
+      ],
+      "pan": [
+        -0.2588059802384109,
+        -0.07230026071885984
+      ]
+    },
+    "components_per_language": {
+      "afr": 353,
+      "amh": 171,
+      "arb": 587,
+      "arq": 522,
+      "ary": 340,
+      "hau": 169,
+      "ind": 326,
+      "kin": 212,
+      "pan": 347
+    },
+    "limitation": "Conditional descriptive intervals; official sentence reuse, upstream exposure, and repeated development selection remain."
+  },
+  "sentence_component_audit": {
+    "languages": {
+      "amh": {
+        "components": 1240,
+        "sentence_nodes": 2498,
+        "largest_component_sentence_nodes": 4,
+        "cross_split_components": 6,
+        "rows_in_cross_split_components": {
+          "train": 10,
+          "test": 5,
+          "dev": 1
+        },
+        "split_component_counts": {
+          "train": 980,
+          "dev": 95,
+          "test": 171
+        }
+      },
+      "arq": {
+        "components": 1415,
+        "sentence_nodes": 3353,
+        "largest_component_sentence_nodes": 8,
+        "cross_split_components": 195,
+        "rows_in_cross_split_components": {
+          "train": 273,
+          "dev": 51,
+          "test": 192
+        },
+        "split_component_counts": {
+          "train": 1002,
+          "dev": 96,
+          "test": 522
+        }
+      },
+      "ary": {
+        "components": 844,
+        "sentence_nodes": 2132,
+        "largest_component_sentence_nodes": 13,
+        "cross_split_components": 178,
+        "rows_in_cross_split_components": {
+          "train": 342,
+          "test": 238,
+          "dev": 32
+        },
+        "split_component_counts": {
+          "train": 628,
+          "dev": 68,
+          "test": 340
+        }
+      },
+      "hau": {
+        "components": 403,
+        "sentence_nodes": 2753,
+        "largest_component_sentence_nodes": 1364,
+        "cross_split_components": 131,
+        "rows_in_cross_split_components": {
+          "train": 1469,
+          "dev": 190,
+          "test": 545
+        },
+        "split_component_counts": {
+          "train": 322,
+          "dev": 69,
+          "test": 169
+        }
+      },
+      "kin": {
+        "components": 826,
+        "sentence_nodes": 1851,
+        "largest_component_sentence_nodes": 10,
+        "cross_split_components": 72,
+        "rows_in_cross_split_components": {
+          "train": 92,
+          "test": 59,
+          "dev": 32
+        },
+        "split_component_counts": {
+          "train": 620,
+          "dev": 73,
+          "test": 212
+        }
+      },
+      "afr": {
+        "components": 666,
+        "sentence_nodes": 1414,
+        "largest_component_sentence_nodes": 7,
+        "cross_split_components": 38,
+        "rows_in_cross_split_components": {
+          "dev": 52,
+          "test": 49
+        },
+        "split_component_counts": {
+          "train": 0,
+          "dev": 351,
+          "test": 353
+        }
+      },
+      "arb": {
+        "components": 618,
+        "sentence_nodes": 1245,
+        "largest_component_sentence_nodes": 7,
+        "cross_split_components": 1,
+        "rows_in_cross_split_components": {
+          "dev": 1,
+          "test": 5
+        },
+        "split_component_counts": {
+          "train": 0,
+          "dev": 32,
+          "test": 587
+        }
+      },
+      "ind": {
+        "components": 439,
+        "sentence_nodes": 937,
+        "largest_component_sentence_nodes": 5,
+        "cross_split_components": 25,
+        "rows_in_cross_split_components": {
+          "dev": 31,
+          "test": 33
+        },
+        "split_component_counts": {
+          "train": 0,
+          "dev": 138,
+          "test": 326
+        }
+      },
+      "pan": {
+        "components": 428,
+        "sentence_nodes": 1243,
+        "largest_component_sentence_nodes": 26,
+        "cross_split_components": 97,
+        "rows_in_cross_split_components": {
+          "dev": 152,
+          "test": 255
+        },
+        "split_component_counts": {
+          "train": 0,
+          "dev": 178,
+          "test": 347
+        }
+      }
+    },
+    "label_access": false,
+    "interpretation": "Sentence reuse connects rows but does not prove copied pair-label leakage; official split is not sentence-disjoint."
+  },
+  "release_marker_sha256": "056f9742c98baa8d2e0ac05cea3f9aad1403977c3b06174c873718c1a03f5c88",
+  "limits": [
+    "The Amharic, Hausa, and Kinyarwanda test scores were previously observed; the pooled nine-language score is not an untouched test.",
+    "Official partitions reuse sentences; upstream pretrained model exposure to benchmark text is unknown."
+  ],
+  "test_exposure_groups": {
+    "previously_observed_three_languages": {
+      "languages": [
+        "amh",
+        "hau",
+        "kin"
+      ],
+      "selected": {
+        "languages": {
+          "amh": {
+            "rows": 171,
+            "spearman": 0.7700233245806457,
+            "pearson": 0.7663188672578616,
+            "mae": 0.1902111748375042
+          },
+          "hau": {
+            "rows": 603,
+            "spearman": 0.6132248368106173,
+            "pearson": 0.598735815545005,
+            "mae": 0.21970786460201142
+          },
+          "kin": {
+            "rows": 222,
+            "spearman": 0.6116315770796437,
+            "pearson": 0.5722556426712695,
+            "mae": 0.18040697206382278
+          }
+        },
+        "macro_spearman": 0.6649599128236355,
+        "macro_mae": 0.19677533716777948
+      },
+      "baseline": {
+        "languages": {
+          "amh": {
+            "rows": 171,
+            "spearman": 0.7273757562519377,
+            "pearson": 0.716692285221585,
+            "mae": 0.24156876948362557
+          },
+          "hau": {
+            "rows": 603,
+            "spearman": 0.5305057647988721,
+            "pearson": 0.5164327889354499,
+            "mae": 0.25144561483788846
+          },
+          "kin": {
+            "rows": 222,
+            "spearman": 0.4882520755471488,
+            "pearson": 0.46399784237498454,
+            "mae": 0.22405706769577013
+          }
+        },
+        "macro_spearman": 0.5820445321993195,
+        "macro_mae": 0.23902381733909472
+      }
+    },
+    "six_additional_languages": {
+      "languages": [
+        "afr",
+        "arb",
+        "arq",
+        "ary",
+        "ind",
+        "pan"
+      ],
+      "selected": {
+        "languages": {
+          "afr": {
+            "rows": 375,
+            "spearman": 0.7996160841183305,
+            "pearson": 0.7727031937065584,
+            "mae": 0.2463993229820331
+          },
+          "arb": {
+            "rows": 595,
+            "spearman": 0.5557637152072661,
+            "pearson": 0.5353880944679552,
+            "mae": 0.3384225528314084
+          },
+          "arq": {
+            "rows": 583,
+            "spearman": 0.5567207187322899,
+            "pearson": 0.5696392943910833,
+            "mae": 0.33431520717681784
+          },
+          "ary": {
+            "rows": 426,
+            "spearman": 0.7539072114945247,
+            "pearson": 0.733722279380932,
+            "mae": 0.14419332814608382
+          },
+          "ind": {
+            "rows": 360,
+            "spearman": 0.53223002399092,
+            "pearson": 0.5412372694654134,
+            "mae": 0.22258514323499468
+          },
+          "pan": {
+            "rows": 634,
+            "spearman": -0.17051991085019685,
+            "pearson": -0.24217069762836582,
+            "mae": 0.2638306719205733
+          }
+        },
+        "macro_spearman": 0.5046196404488558,
+        "macro_mae": 0.2582910377153185
+      },
+      "baseline": {
+        "languages": {
+          "afr": {
+            "rows": 375,
+            "spearman": 0.7701123900826797,
+            "pearson": 0.7082789650007296,
+            "mae": 0.315439024873525
+          },
+          "arb": {
+            "rows": 595,
+            "spearman": 0.5023804227944594,
+            "pearson": 0.4699566353495779,
+            "mae": 0.43615721265890267
+          },
+          "arq": {
+            "rows": 583,
+            "spearman": 0.5386181626492719,
+            "pearson": 0.524819296050928,
+            "mae": 0.4475459941448467
+          },
+          "ary": {
+            "rows": 426,
+            "spearman": 0.6318489595296322,
+            "pearson": 0.62892811707522,
+            "mae": 0.1852511742102428
+          },
+          "ind": {
+            "rows": 360,
+            "spearman": 0.5259012088407363,
+            "pearson": 0.5385562136449585,
+            "mae": 0.2205190030121141
+          },
+          "pan": {
+            "rows": 634,
+            "spearman": -0.20819600710368566,
+            "pearson": -0.2694570526317852,
+            "mae": 0.30633690948177966
+          }
+        },
+        "macro_spearman": 0.46011085613218233,
+        "macro_mae": 0.31854155306356846
+      }
+    }
+  }
+}
