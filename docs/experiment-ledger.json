@@ -1,0 +1,204 @@
+{
+  "data": {
+    "source": "https://github.com/semantic-textual-relatedness/Semantic_Relatedness_SemEval2024",
+    "revision": "3c5941ddffdc9d833a5528f49dd13ed9087c0dba",
+    "languages": [
+      "amh",
+      "hau",
+      "kin"
+    ],
+    "rows": {
+      "train": 3456,
+      "dev": 386,
+      "test": 996
+    },
+    "removed_pair_copies": {
+      "kin_train": 50,
+      "kin_dev": 23
+    },
+    "raw_CSV_SHA256_location": "src/config.py",
+    "processed_LF_SHA256": {
+      "train": "2bb507a400bbd405259484c37f25c96890f48b66438880ed86dc98b67a70bb2b",
+      "dev": "c5c491def890a1994a2bff09d8ab03ec7fae934745349ef4d8e546049e531b28",
+      "test": "678a9d120a5d40ef75e80bd36f00a361f198814267e5ceab3031bddfc1850fbf"
+    }
+  },
+  "protocols": {
+    "model-protocol-v1.json": {
+      "freeze_commit": "10a8d70",
+      "frozen_git_blob_sha256": "02d7c6e43f3cd88c6a1910e50b0da99754de8c2b24d8ef483dc3e9e6d2d72594"
+    },
+    "ranking-followup-v2-protocol.json": {
+      "freeze_commit": "e146c76",
+      "frozen_git_blob_sha256": "136c875a9ac5b323622d885268d17f185671fa385818b89b4f7f5f8fbe7952c5"
+    },
+    "final-policy-v1.json": {
+      "freeze_commit": "f3e10b0",
+      "frozen_git_blob_sha256": "8eab9b202478a6d5bb6f40cdf850a9a1800113ae60ecb86b7de5d31813a2bac1"
+    }
+  },
+  "encoder": {
+    "model": "Davlan/afro-xlmr-base",
+    "revision": "25f27299c247a6b73a767bd82d12444138b19337",
+    "weights_SHA256": {
+      "model.safetensors": "f73b04316c9c2e76fcb213957616a09e1eb44112266717f649fc1897dac42953"
+    },
+    "CPU_seconds": 715.1806373596191,
+    "six_sentence_smoke_replay_difference": 0.0,
+    "source_revision": "3cc2934cb0a454245ea11c5e60ad48b90d1a696e"
+  },
+  "runtime": {
+    "encoder": {
+      "python": "3.13.15",
+      "torch": "2.11.0+cpu",
+      "transformers": "4.57.6",
+      "numpy": "2.1.3",
+      "cpu_threads": 2,
+      "source_revision": "3cc2934cb0a454245ea11c5e60ad48b90d1a696e",
+      "source_manifest_sha256": "34d3507096bceb4bbec6bb66632d3444ccce682d615ef6b3ba3d3a6e8550a12c"
+    },
+    "heads": {
+      "study": "Frozen v1 real cached heads; no encoder allocation",
+      "source_revision": "5c9411c85c2e6684b87b37a589cf3410e649e999",
+      "python": "3.14.2",
+      "torch": "2.14.0+cpu",
+      "numpy": "2.4.2",
+      "sklearn": "1.8.0",
+      "device": "CPU",
+      "torch_threads": 2,
+      "ridge_blas_threads": "Not instrumented in original live process; do not claim exact two-thread BLAS limit",
+      "hardware_amendment": "Local small-head execution chosen before fitting; cloud CPU was used for encoder. No source/grid/selection change. Protocol original hardware wording described cloud CPU; local head runtime differs and is disclosed.",
+      "test_gold_loaded": false
+    }
+  },
+  "studies": [
+    {
+      "name": "MSE regressors",
+      "ridge_penalties": [
+        1,
+        10,
+        100
+      ],
+      "MLP_configurations": 3,
+      "seeds": [
+        42,
+        1337,
+        2026
+      ],
+      "MLP_fits": 9,
+      "winner": "mlp128",
+      "validation_macro_Spearman": 0.5554781259892333,
+      "CPU_seconds": 150.48036575317383
+    },
+    {
+      "name": "Ranking objective",
+      "weights": [
+        0.03,
+        0.1,
+        0.3
+      ],
+      "seeds": [
+        42,
+        1337,
+        2026
+      ],
+      "MLP_fits": 9,
+      "winner": "ranking-0.1",
+      "validation_macro_Spearman": 0.5628909583624521,
+      "CPU_seconds": 102.08806324005127
+    }
+  ],
+  "negative_outcomes": [
+    "All ridge penalties failed validation promotion.",
+    "Slower and stronger-regularized MLPs lost to the MSE control.",
+    "Ranking weights .03 and .3 failed the fixed promotion rules.",
+    "Final learned rank correlation was lower than character overlap in all three languages; MAE was lower in all three."
+  ],
+  "preflight_failures": [
+    {
+      "stage": "Source proposal",
+      "result": "English/Marathi/Telugu excluded before data use after primary paper showed generated paraphrases."
+    },
+    {
+      "stage": "Encoder v1",
+      "result": "Failed before encoder loading: Windows CRLF versus Linux LF changed processed-byte hashes. Official CSV hashes and every parsed row unchanged; explicit LF correction matched cloud preparation."
+    }
+  ],
+  "final_choice": {
+    "status": "Final global validation choice frozen before any human test gold release",
+    "selected": "ranking-0.1",
+    "selection_sha256": "3de2005f043752b45882b31eb520e259062363786c0eb17f91852c6158fdcc2e",
+    "checkpoint_sha256": "293b99ca441829ba9cf36a60ce118384e54c0af8cf791dc222ea7e6eb286fc7d",
+    "baseline_sha256": "7142526d60ad9a470dcb85ab45c4d7b1264bb1ec6e9e7c398bacd195ee0ac8f2",
+    "validation": {
+      "languages": {
+        "amh": {
+          "spearman": 0.8006077101560068,
+          "pearson": 0.7996812970781844,
+          "mae": 0.12280771493127471,
+          "rows": 95
+        },
+        "hau": {
+          "spearman": 0.5778433361239484,
+          "pearson": 0.5831347521525496,
+          "mae": 0.18077262013026005,
+          "rows": 212
+        },
+        "kin": {
+          "spearman": 0.31022182880740085,
+          "pearson": 0.3243697892815163,
+          "mae": 0.2039227686067925,
+          "rows": 79
+        }
+      },
+      "macro_spearman": 0.5628909583624521,
+      "macro_pearson": 0.5690619461707501,
+      "macro_mae": 0.16916770122277577
+    },
+    "studies": [
+      "Initial frozen lexical/cosine/ridge + 3 MLP configurations \u00d73 seeds",
+      "Prospective ranking loss weights .03/.1/.3 \u00d73 seeds, same architecture/optimizer"
+    ],
+    "test_gold_loaded": false,
+    "production_path": "models/selected-v1/selected.pt",
+    "source_revision": "160dd3ae5012e60d77d60857f7bd891a72b7ecb7",
+    "inference_contract": "Six real training-text pairs: first per language plus reversed order, no labels passed; actual text encoding must match cached selected predictions within1e-4, reversal within1e-6. No encoder fine-tuning claimed.",
+    "stop": "Complete measured core study and one ranking follow-up; no arbitrary new grids, no optimality claim. New data/encoder hypothesis needs separate prospective study."
+  },
+  "final_test": {
+    "model_macro_Spearman": 0.5486414028452388,
+    "baseline_macro_Spearman": 0.5820445321993195,
+    "model_macro_MAE": 0.16797118401423275,
+    "baseline_macro_MAE": 0.23902381733909472,
+    "paired_delta_interval": [
+      -0.09107223228349591,
+      0.025225418182357993
+    ],
+    "selection_unchanged": true,
+    "selection_sha256_before_gold": "3de2005f043752b45882b31eb520e259062363786c0eb17f91852c6158fdcc2e",
+    "release_marker_sha256": "7ffbca206cb75a0ef414741ab9a807e09cae61f16bce2dc2d57bf20c633c34da"
+  },
+  "test_exposure": "Gold parsed once after final validation policy/checkpoint freeze and actual text-inference proof. No test-guided policy change. The test is now observed; notebooks use its saved aggregate report only.",
+  "inference": {
+    "rows": 6,
+    "real_source": "First training pair per language and reversed order; no target input",
+    "cache_prediction_max_difference": 1.1920928955078125e-07,
+    "reversal_max_difference": 0.0,
+    "finite_scores_in_unit_interval": true,
+    "accuracy_claim": false,
+    "test_gold_loaded": false,
+    "checkpoint_sha256": "293b99ca441829ba9cf36a60ce118384e54c0af8cf791dc222ea7e6eb286fc7d",
+    "input_sha256": "9a99454eebf3ce9e51b9cfaf838c9ec34ddebb729131b919691a4553c479ceca",
+    "source_manifest_sha256": "7345dd658e93da45293f49150cf25433c137deafd4f0c8a066ac71344ac26296",
+    "source_revision": "cfe896d5c928fa3c01a40ac77881839a9bdb0819",
+    "torch": "2.11.0+cpu",
+    "elapsed_seconds": 71.18803143501282
+  },
+  "limitations": [
+    "Official splits share sentence-connected components; not sentence-disjoint.",
+    "Unknown encoder pretraining overlap.",
+    "Small development cohorts and repeated validation selection.",
+    "Component bootstrap conditional on available source groups, not independent deployment evidence.",
+    "CPU head and cloud encoder framework versions differ; no bitwise hardware-independent guarantee."
+  ]
+}

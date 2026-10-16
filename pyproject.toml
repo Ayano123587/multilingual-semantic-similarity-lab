@@ -11,7 +11,7 @@ dependencies = ["numpy>=2,<3", "scipy>=1.14,<2", "scikit-learn>=1.6,<2", "torch>
 
 [project.optional-dependencies]
 dev = ["pytest>=8,<10"]
-notebook = ["jupyter>=1,<2", "matplotlib>=3.9,<4"]
+notebook = ["jupyter>=1,<2", "matplotlib>=3.9,<4", "pandas>=2,<3", "nbclient>=0.10,<1"]
 
 [tool.setuptools.packages.find]
 include = ["src*"]

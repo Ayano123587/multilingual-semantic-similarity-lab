@@ -58,6 +58,20 @@ def balanced_weights(languages):
     return np.asarray([len(languages)/(len(LANGUAGES)*np.sum(languages==lang)) for lang in languages],np.float32)
 
 
+def ranking_loss(logits,targets,languages):
+    """Human-score order within each language; no manufactured sentence pairs."""
+    values=[]
+    for language in LANGUAGES:
+        mask=torch.as_tensor(np.asarray(languages)==language,device=logits.device)
+        a,b=logits[mask],targets[mask]
+        difference=b[:,None]-b[None,:]
+        eligible=torch.triu(torch.ones_like(difference,dtype=torch.bool),diagonal=1)&(difference.abs()>=.1)
+        if eligible.any():
+            logits_difference=a[:,None]-a[None,:]
+            values.append(torch.nn.functional.binary_cross_entropy_with_logits(logits_difference[eligible],(difference[eligible]>0).to(logits.dtype)))
+    return torch.stack(values).mean() if values else logits.sum()*0
+
+
 def fit_mlp(x,y,languages,vx,vy,validation_languages,config,seed,epochs=50):
     if epochs<1:raise ValueError('Positive epoch count required')
     torch.manual_seed(seed);torch.set_num_threads(2)
@@ -67,16 +81,26 @@ def fit_mlp(x,y,languages,vx,vy,validation_languages,config,seed,epochs=50):
     weights=torch.from_numpy(balanced_weights(languages));generator=torch.Generator().manual_seed(seed)
     history=[];best=-float('inf');best_epoch=0;state=None
     for epoch in range(epochs):
-        model.train();total=0.
+        model.train();total=0.;mse_total=0.;ranking_total=0.
         for ids in torch.randperm(len(x),generator=generator).split(64):
-            loss=((model(x[ids])-y[ids]).square()*weights[ids]).mean()
+            ranking_weight=config.get('ranking_weight',0.)
+            if ranking_weight:
+                logits=model.net[:-1](x[ids]).squeeze(-1)
+                prediction=torch.sigmoid(logits)
+                ranking=ranking_loss(logits,y[ids],np.asarray(languages)[ids.numpy()])
+            else:
+                prediction=model(x[ids]);ranking=prediction.sum()*0
+            regression=((prediction-y[ids]).square()*weights[ids]).mean()
+            loss=regression+ranking_weight*ranking
             if not torch.isfinite(loss):raise RuntimeError('Nonfinite training loss')
             optimizer.zero_grad();loss.backward();torch.nn.utils.clip_grad_norm_(model.parameters(),1,error_if_nonfinite=True);optimizer.step()
             total+=float(loss.detach())*len(ids)
+            mse_total+=float(regression.detach())*len(ids);ranking_total+=float(ranking.detach())*len(ids)
         model.eval()
         with torch.inference_mode():prediction=model(vx).numpy()
         metrics=evaluate(vy,prediction,validation_languages);value=metrics['macro_spearman']
-        history.append({'epoch':epoch+1,'weighted_mse':total/len(x),'validation':metrics})
+        history.append({'epoch':epoch+1,'weighted_mse':mse_total/len(x),'ranking_loss':ranking_total/len(x),
+                        'training_objective':total/len(x),'validation':metrics})
         if value is not None and value>best:
             best=value;best_epoch=epoch+1;state=copy.deepcopy(model.state_dict())
         if epoch+1>=3 and epoch+1-best_epoch>=6:break

@@ -124,9 +124,11 @@ def prepare(directory=DATA/'raw'/'semrel',output=DATA/'processed'/'semrel'):
 if __name__=='__main__':
     import argparse
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--prepare',action='store_true')
+    parser.add_argument('--raw',default=str(DATA/'raw'/'semrel'))
+    parser.add_argument('--output',default=str(DATA/'processed'/'semrel'))
     args=parser.parse_args()
-    if args.prepare:prepare()
+    if args.prepare:prepare(args.raw,args.output)
     else:
-        receipt=fetch()
+        receipt=fetch(args.raw)
         print(json.dumps({'revision':receipt['revision'],'files':{
             key:{'sha256':value['sha256'],'header':value['header']} for key,value in receipt['files'].items()}},indent=2))

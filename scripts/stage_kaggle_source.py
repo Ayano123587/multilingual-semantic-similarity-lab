@@ -13,7 +13,7 @@ def stage(output,processed='data/processed/semrel'):
     output.mkdir(parents=True,exist_ok=True)
     files={}
     paths=list((repo/'src').rglob('*.py'))+[repo/name for name in
-        ('LICENSE','docs/model-protocol-v1.json','docs/source-audit-amendment.md','docs/component-audit.json')]
+        ('LICENSE','docs/model-protocol-v1.json','docs/provenance.md','docs/component-audit.json')]
     for path in sorted(paths):
         relative=path.relative_to(repo).as_posix();filename=relative.replace('/','__')
         shutil.copyfile(path,output/filename)

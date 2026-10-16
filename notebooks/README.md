@@ -1,3 +1,3 @@
-# Complete production-module walkthrough
+# Relatedness notebooks
 
-`01_complete_relatedness_workflow.ipynb` covers authentic source setup, connected-component diagnostics, pinned encoder caching, opt-in learned training, validation comparisons, real saved-model text inference, and aggregate plots. Optional expensive cells are disabled by default and create fresh artifacts. Final gold release is deliberately separate. No fake executed outputs are included; recorded reports are explicitly distinguished from new runs. Models remain implemented in `src/`, not duplicated in notebook cells.
+Start with the main model/experiments notebook, then data audit and results/inference. Core algorithms are readable cells, with actual full-data replay, saved comparisons and embedded plots. Notebook definitions are checked against production source. Private cache/checkpoints are required for replay; final gold is never reopened by analysis notebooks.

@@ -14,3 +14,10 @@ dist/
 *.npy
 *.safetensors
 /logs/
+/models/*
+!/models/README.md
+*.bin
+*.csv
+*.jsonl
+.ipynb_checkpoints/
+.cache/

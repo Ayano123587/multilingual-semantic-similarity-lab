@@ -12,6 +12,7 @@ from src.models.metrics import evaluate,cluster_bootstrap
 
 
 def final_evaluate(cache,processed,selected,raw,output):
+    torch.set_num_threads(2)
     selected,output,processed,raw=map(Path,(selected,output,processed,raw))
     if output.exists():raise ValueError('Final output exists; do not rerun or overwrite test evidence')
     selection_path=selected/'selection.json'

@@ -1,0 +1,15 @@
+{
+  "rows": 6,
+  "real_source": "First training pair per language and reversed order; no target input",
+  "cache_prediction_max_difference": 1.1920928955078125e-07,
+  "reversal_max_difference": 0.0,
+  "finite_scores_in_unit_interval": true,
+  "accuracy_claim": false,
+  "test_gold_loaded": false,
+  "checkpoint_sha256": "293b99ca441829ba9cf36a60ce118384e54c0af8cf791dc222ea7e6eb286fc7d",
+  "input_sha256": "9a99454eebf3ce9e51b9cfaf838c9ec34ddebb729131b919691a4553c479ceca",
+  "source_manifest_sha256": "7345dd658e93da45293f49150cf25433c137deafd4f0c8a066ac71344ac26296",
+  "source_revision": "cfe896d5c928fa3c01a40ac77881839a9bdb0819",
+  "torch": "2.11.0+cpu",
+  "elapsed_seconds": 71.18803143501282
+}

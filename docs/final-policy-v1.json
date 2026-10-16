@@ -1,0 +1,41 @@
+{
+  "status": "Final global validation choice frozen before any human test gold release",
+  "selected": "ranking-0.1",
+  "selection_sha256": "3de2005f043752b45882b31eb520e259062363786c0eb17f91852c6158fdcc2e",
+  "checkpoint_sha256": "293b99ca441829ba9cf36a60ce118384e54c0af8cf791dc222ea7e6eb286fc7d",
+  "baseline_sha256": "7142526d60ad9a470dcb85ab45c4d7b1264bb1ec6e9e7c398bacd195ee0ac8f2",
+  "validation": {
+    "languages": {
+      "amh": {
+        "spearman": 0.8006077101560068,
+        "pearson": 0.7996812970781844,
+        "mae": 0.12280771493127471,
+        "rows": 95
+      },
+      "hau": {
+        "spearman": 0.5778433361239484,
+        "pearson": 0.5831347521525496,
+        "mae": 0.18077262013026005,
+        "rows": 212
+      },
+      "kin": {
+        "spearman": 0.31022182880740085,
+        "pearson": 0.3243697892815163,
+        "mae": 0.2039227686067925,
+        "rows": 79
+      }
+    },
+    "macro_spearman": 0.5628909583624521,
+    "macro_pearson": 0.5690619461707501,
+    "macro_mae": 0.16916770122277577
+  },
+  "studies": [
+    "Initial frozen lexical/cosine/ridge + 3 MLP configurations \u00d73 seeds",
+    "Prospective ranking loss weights .03/.1/.3 \u00d73 seeds, same architecture/optimizer"
+  ],
+  "test_gold_loaded": false,
+  "production_path": "models/selected-v1/selected.pt",
+  "source_revision": "160dd3ae5012e60d77d60857f7bd891a72b7ecb7",
+  "inference_contract": "Six real training-text pairs: first per language plus reversed order, no labels passed; actual text encoding must match cached selected predictions within1e-4, reversal within1e-6. No encoder fine-tuning claimed.",
+  "stop": "Complete measured core study and one ranking follow-up; no arbitrary new grids, no optimality claim. New data/encoder hypothesis needs separate prospective study."
+}

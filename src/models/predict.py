@@ -6,7 +6,7 @@ import numpy as np
 import torch
 from src.models.encoder import Encoder
 from src.models.train import predict_features,validate_bundle,write_json
-from src.features.build_features import pair_features
+from src.features.build_features import pair_features,lexical
 
 
 def predict(checkpoint,input,output,device='cpu'):
@@ -16,6 +16,13 @@ def predict(checkpoint,input,output,device='cpu'):
     rows=[json.loads(line) for line in Path(input).read_text(encoding='utf-8').splitlines()]
     if not rows or any(not isinstance(row.get(k),str) or not row[k].strip() for row in rows for k in ('sentence1','sentence2')):
         raise ValueError('Expected nonempty JSONL sentence pairs')
+    if bundle['kind']=='baseline' and bundle['name'] in ('word_jaccard','character_jaccard','train_mean'):
+        # A lexical or constant winner has no active encoder dependency.
+        features=np.zeros((len(rows),1539),np.float32);features[:,-2:]=lexical(rows)
+        result={'predictions':predict_features(bundle,features).tolist(),'relatedness_not_probability':True,
+                'diagnostics':{'encoded_sentences':0},'active_model':bundle['name'],'rows':len(rows)}
+        output.parent.mkdir(parents=True,exist_ok=True);write_json(output,result)
+        return result
     encoder=Encoder(device)
     # Loading is pinned by revision; additionally attest actual weight bytes.
     from huggingface_hub import try_to_load_from_cache

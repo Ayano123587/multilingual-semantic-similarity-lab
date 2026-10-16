@@ -11,13 +11,14 @@ def common():
             'weight_sha256':{'model.safetensors':'a'*64}}
 
 
-def test_language_balance_and_actual_gradients_checkpoint(tmp_path):
+@pytest.mark.parametrize('ranking_weight',[0.,.1])
+def test_language_balance_and_actual_gradients_checkpoint(tmp_path,ranking_weight):
     languages=np.array(['amh']*2+['hau']*4+['kin']*6)
     weights=balanced_weights(languages)
     assert np.allclose([weights[languages==lang].sum() for lang in LANGUAGES],4)
     rng=np.random.default_rng(9);x=rng.normal(size=(12,1539)).astype(np.float32)
     y=np.array([0.,1.,0.,.2,.5,1.,0.,.1,.2,.5,.7,1.],np.float32)
-    config={'name':'test','hidden':128,'dropout':.2,'lr':.001,'weight_decay':.01}
+    config={'name':'test','hidden':128,'dropout':.2,'lr':.001,'weight_decay':.01,'ranking_weight':ranking_weight}
     c,p,history=fit_mlp(x,y,languages,x,y,languages,config,42,epochs=2)
     torch.manual_seed(42);initial=Head(1539,128,.2).state_dict()
     assert any(not torch.equal(c['state_dict'][k],initial[k]) for k in initial)
@@ -69,3 +70,29 @@ def test_release_marker_blocks_different_output_path_before_gold(tmp_path,monkey
     monkeypatch.setattr(final_module,'read_pairs',forbidden)
     with pytest.raises(ValueError,match='already released'):
         final_module.final_evaluate(cache,'missing',selected,'missing',tmp_path/'new-output.json')
+
+
+def test_lexical_winner_inference_does_not_allocate_unused_encoder(tmp_path,monkeypatch):
+    import json
+    from src.models import predict as prediction_module
+    checkpoint=tmp_path/'selected.pt'
+    torch.save({**common(),'kind':'baseline','name':'word_jaccard','train_mean':.5},checkpoint)
+    inputs=tmp_path/'pairs.jsonl'
+    inputs.write_text(json.dumps({'sentence1':'one two','sentence2':'two three'})+'\n',encoding='utf-8')
+    def forbidden(*args,**kwargs):raise AssertionError('Lexical inference must not load encoder')
+    monkeypatch.setattr(prediction_module,'Encoder',forbidden)
+    result=prediction_module.predict(checkpoint,inputs,tmp_path/'prediction.json')
+    assert result['predictions'][0]==pytest.approx(1/3)
+    assert result['diagnostics']['encoded_sentences']==0
+
+
+def test_ranking_loss_order_gradient_and_language_isolation():
+    from src.models.train import ranking_loss
+    targets=torch.tensor([0.,1.,0.,1.]);languages=np.array(['amh','amh','hau','hau'])
+    correct=torch.tensor([-2.,2.,-2.,2.],requires_grad=True)
+    good=ranking_loss(correct,targets,languages);bad=ranking_loss(-correct,targets,languages)
+    assert good<bad
+    good.backward();assert torch.isfinite(correct.grad).all() and correct.grad.abs().sum()>0
+    no_pairs=torch.tensor([1.,-1.,2.],requires_grad=True)
+    zero=ranking_loss(no_pairs,torch.tensor([0.,1.,.5]),np.array(LANGUAGES))
+    assert zero==0;zero.backward();assert torch.equal(no_pairs.grad,torch.zeros(3))
