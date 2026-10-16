@@ -15,7 +15,7 @@ The run includes every available official split from nine verified human-source-
 - [Data audit](notebooks/02_data_audit.ipynb): all source checksums, complete split counts, human ratings, scripts and sentence-connected groups.
 - [Results and inference](notebooks/03_results_and_inference.ipynb): per-language evaluation, component uncertainty, development errors, seed variation and saved-model text/reversal proof.
 
-The notebooks retain real executed outputs and embedded plots. They read the saved test aggregate, never reopen gold or repeat test scoring. Raw text, embeddings and weights remain ignored.
+The notebooks retain executed outputs and embedded plots. Replay requires locally prepared caches and trained checkpoints. They read the saved test aggregate without reopening gold or repeating test scoring. Raw text, embeddings and weights remain ignored.
 
 ## Train
 
@@ -32,7 +32,7 @@ python train.py --cache-afro data/features/embeddings-afro --cache-e5 data/featu
 python -m pytest -q
 ```
 
-Use fresh output paths. Encoder work needs substantial RAM; the measured encoding/training run used private cloud CPU with two threads. [Plain-file cloud staging](scripts/stage_full_cohort.py) and the [readable runner](scripts/kaggle_sentence_comparison.py) support cloud execution. No private artifact is required for a cold-start run. Fresh artifacts get their own frozen follow-up protocol rather than overwriting the published run's hashes.
+Use fresh output paths. Encoder work needs substantial RAM; the measured encoding/training run used private cloud CPU with two threads. [Plain-file cloud staging](scripts/stage_full_cohort.py) and the [readable runner](scripts/kaggle_sentence_comparison.py) support cloud execution. No private artifact is required for a cold-start run. Freeze a follow-up protocol for each fresh set of training artifacts.
 
 ## Inference
 

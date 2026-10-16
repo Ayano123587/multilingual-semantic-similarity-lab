@@ -24,14 +24,14 @@ The final score uses 25% mean learned prediction and 75% character overlap. Deve
 
 ## Evaluation and inference checks
 
-All 3,969 test pairs were scored once after the hash-bound policy freeze and real-text proof. The six additional language tests score **0.50462** versus **0.46011**; the three previously observed language tests score **0.66496** versus **0.58204**. The selected model was retained after evaluation without refitting or adjusting the blend.
+All 3,969 test pairs were scored once after the hash-bound policy freeze and real-text proof. The six additional language tests score **0.50462** versus **0.46011**; the three previously observed language tests score **0.66496** versus **0.58204**.
 
 A paired, language-stratified sentence-component bootstrap gives macro Spearman interval **[0.53335, 0.58272]** and model-minus-baseline interval **[0.04624, 0.06943]**, using 1,000 valid resamples. These are conditional descriptive intervals, not independent-document guarantees.
 
-Selected checkpoint SHA256: `43b16caca7c625d5513914da1eed338d40e41e11fd94e10381e2d8bd9859240e`. Actual 18-pair E5 text/reversal inference matches cached predictions within **1.79e-7**, with exact reversal agreement. Backbone loading has no missing, mismatched or erroneous keys; the unused pretrained pooler is excluded. The main notebook executes complete source preparation, real gradient updates and all-development saved-model replay; its full training curves come from the measured cloud run.
+Selected checkpoint SHA256: `43b16caca7c625d5513914da1eed338d40e41e11fd94e10381e2d8bd9859240e`. Actual 18-pair E5 text/reversal inference matches cached predictions within **1.79e-7**, with exact reversal agreement.
 
 The [frozen policy](docs/frozen-policy.json), [training aggregate](docs/training-results.json), [test aggregate](docs/final-test.json) and [text proof](docs/inference-proof.json) provide the exact hashes, histories and framework versions. [README](README.md) gives fresh training and prediction commands.
 
 ## Limits
 
-Punjabi test Spearman is -0.17052; the model does not provide useful Punjabi ranking. Indonesian rating MAE is slightly worse despite its rank gain. Development cohorts vary sharply in size and selection was repeated. Sentence reuse connects official partitions, and pretrained exposure is unknown. Three tests were previously observed, so pooled evaluation is not wholly blind. Scores are not calibrated probabilities; independent-source transfer remains unmeasured.
+Punjabi test Spearman is -0.17052; the model does not provide useful Punjabi ranking. Indonesian rating MAE is slightly worse despite its rank gain. Development cohorts vary sharply in size and selection was repeated. Sentence reuse connects official partitions, and pretrained exposure is unknown. Scores are not calibrated probabilities; independent-source transfer remains unmeasured.
